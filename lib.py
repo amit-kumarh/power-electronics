@@ -2,6 +2,12 @@ import csv
 import pandas as pd
 import numpy as np
 
+R = 5 # Load Resistance
+VG = 18 # Input Voltage
+Fs = 50500 # Measured frequency
+Ts = 1/ Fs
+R_SHUNT = 0.05 # from schematic
+
 # read funky Rigol CSV format
 def read_rigol_csv(csv_file_name):
     with open(csv_file_name) as f:
@@ -53,4 +59,23 @@ def duty_cycle(df, wave_name, start, end, Ts, thresh=0.25):
     lows = np.where(wave < thresh)[0]
     dt = np.diff(x)[0] # should be constant
     return dt * len(lows) / Ts
+
+def calc_inductance(df, start, end, Vout):
+    """
+    Calculate inductance from the inductor shunt voltage
+
+    @param df: dataframe containing 'X' time column and "Vshunt" column
+    @param start: start time during current ramp
+    @param end: end time during current ramp
+    @param Vout: output voltage of converter
+    
+    @return np.float: inductance in H
+    """
+    I_calc = df["Vshunt"] / R_SHUNT
+    V_L = VG - Vout
+    rng = np.where((df["X"] > start) & (df["X"] < end))[0]
+    dI = np.polyfit(df["X"][rng[0]:rng[-1]], I_calc[rng[0]:rng[-1]], 1)[0]
+    return V_L/dI
+
+
 
