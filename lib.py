@@ -23,7 +23,7 @@ def read_rigol_csv(csv_file_name):
     data['X'] = t0+data['X']*dT
     return data, t0, dT
 
-def import_and_clean(name, cols, filt):
+def import_and_clean(name, cols, filt, filt_len=10):
     """
     Import and clean some data from the Rigol scope
 
@@ -34,12 +34,12 @@ def import_and_clean(name, cols, filt):
     @return pd.df - renamed/filtered dataframe
     """
     data, t0, dT = read_rigol_csv(f"data/{name}.csv")
-    data[cols[0]] = data['CH1'].rolling(10).mean() if filt else data['CH1'] # filter/rename data
-    data[cols[1]] = data['CH2'].rolling(10).mean() if filt else data['CH2']
+    data[cols[0]] = data['CH1'].rolling(filt_len).mean() if filt else data['CH1'] # filter/rename data
+    data[cols[1]] = data['CH2'].rolling(filt_len).mean() if filt else data['CH2']
     data['X'] = data['X'].subtract(t0) # start x-axis from 0
     return data, dT
 
-def duty_cycle(df, wave_name, start, end, Ts, thresh=0.25):
+def duty_cycle(df, wave_name, start, end, thresh=0.25):
     """
     Calcluate duty cycle of given column in a df.
 
@@ -76,6 +76,3 @@ def calc_inductance(df, start, end, Vout):
     rng = np.where((df["X"] > start) & (df["X"] < end))[0]
     dI = np.polyfit(df["X"][rng[0]:rng[-1]], I_calc[rng[0]:rng[-1]], 1)[0]
     return V_L/dI
-
-
-
