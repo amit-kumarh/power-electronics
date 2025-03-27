@@ -60,7 +60,7 @@ def duty_cycle(df, wave_name, start, end, thresh=0.25):
     dt = np.diff(x)[0] # should be constant
     return dt * len(lows) / Ts
 
-def calc_inductance(df, start, end, Vout):
+def calc_inductance(df, start, end, V_L):
     """
     Calculate inductance from the inductor shunt voltage
 
@@ -72,7 +72,6 @@ def calc_inductance(df, start, end, Vout):
     @return np.float: inductance in H
     """
     I_calc = df["Vshunt"] / R_SHUNT
-    V_L = VG - Vout
     rng = np.where((df["X"] > start) & (df["X"] < end))[0]
     dI = np.polyfit(df["X"][rng[0]:rng[-1]], I_calc[rng[0]:rng[-1]], 1)[0]
     return V_L/dI

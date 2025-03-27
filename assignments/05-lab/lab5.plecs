@@ -1,5 +1,5 @@
 Plecs {
-  Name          "lab5_pre"
+  Name          "lab5"
   Version       "4.9"
   CircuitModel  "ContStateSpace"
   StartTime     "0.0"
@@ -29,11 +29,11 @@ Plecs {
   AssertionAction "1"
   FixedPointDatatypeOverride "1"
   InitializationCommands "clc\n\nRt = 7.87e3;\nCt = 2.2e-9;\nTs=2.0617e-5; % m"
-"easured in scope\nfs=1/Ts;\n\nD = 0.35;\nC=60e-6;\nVg=18;\nVo=10;\nR=5;\nalph"
-"a = 0.7\n\na = (Vo/Vg) * (sqrt(alpha) - D)/(D)\nM = Vo/(a*Vg)\nVi = Vo/a % le"
-"ft side of transformer\n\nLcrit = (1/(M+1))^2 * (R/a^2) * (Ts/2)\nL = Lcrit *"
-" alpha\n\nIpk = (2/sqrt(alpha)) * (M+1) * (Vi/(R/a^2))\nVcomp = (3/20) * (Ipk"
-" + (26/3))"
+"easured in scope\nfs=1/Ts;\n\nD = 0.35;\nC=60e-6;\nVg=18;\nVo=9.06;\nR=5;\n\n"
+"%% calced from real\nL = 14.832e-6;\na = 0.4862;\n\nM = Vo/(a*Vg)\nLcrit = (1"
+"/(M+1))^2 * (R/a^2) * (Ts/2);\nalpha = L/Lcrit;\n\nVi = Vo/a % left side of t"
+"ransformer\nIpk = (2/sqrt(alpha)) * (M+1) * (Vi/(R/a^2))\n\nVcomp = (3/20) * "
+"(Ipk + (26/3))"
   InitialState  "1"
   SystemState   ""
   TaskingMode   "1"
@@ -58,8 +58,8 @@ Plecs {
   ScriptsDialogGeometry ""
   ScriptsDialogSplitterPos "0"
   Schematic {
-    Location      [2, 2; 958, 1006]
-    ZoomFactor    0.873839
+    Location      [181, 2; 1278, 1006]
+    ZoomFactor    1.1027
     SliderPosition [0, 0]
     ShowBrowser   off
     BrowserWidth  100
@@ -134,7 +134,7 @@ Plecs {
       Show          off
       Position      [775, 265]
       Direction     up
-      Flipped       off
+      Flipped       on
       LabelPosition west
     }
     Component {
@@ -217,18 +217,18 @@ Plecs {
       Direction     up
       Flipped       off
       LabelPosition south
-      Location      [2, 2; 1918, 1028]
+      Location      [2, 2; 638, 1028]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAADMvwCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAAIEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwEAAAA1AA"
-"ADMgAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAd8AAAAq/w"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAB3wAAABEAP///wAABsIAAAMyAAAA"
+"ADMgAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAJ8AAAAq/w"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAAnwAAABEAP///wAAAcIAAAMyAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAEAAAAYAFMAYQB2AGUAZAAgAHYAaQBlAHcAIAAxP2NKIIRFc"
 "UI/Y9GSojsPIgAAAAMAf/gAAAAAAAB/+AAAAAAAAAB/+AAAAAAAAH/4AAAAAAAAAH/4AAAAAAAAf/"
 "gAAAAAAAABP2Ny0nVO3BM/Y55TwnbL/AE="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":179,\"Labels\":[\""
-"Delta\"],\"VisualIdxs\":[3]}"
+      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":179,\"Labels\":["
+"\"Delta\"],\"VisualIdxs\":[3]}"
       PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA"
 "AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 "=="
@@ -350,30 +350,6 @@ Plecs {
       Parameter {
         Variable      "Tag"
         Value         "I"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "1"
-        Show          off
-      }
-    }
-    Component {
-      Type          From
-      Name          "From2"
-      Show          off
-      Position      [760, 85]
-      Direction     right
-      Flipped       off
-      LabelPosition south
-      Parameter {
-        Variable      "Tag"
-        Value         "I_L"
         Show          off
       }
       Parameter {
@@ -827,7 +803,7 @@ Plecs {
       Show          off
       Position      [435, 210]
       Direction     left
-      Flipped       off
+      Flipped       on
       LabelPosition south
       Parameter {
         Variable      "Vf"
@@ -979,18 +955,18 @@ Plecs {
       Direction     up
       Flipped       off
       LabelPosition south
-      Location      [2, 2; 1918, 1028]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAADVPwCAAAAA/sAAAAQAFoAbwBvA"
+      Location      [1282, 2; 1918, 1028]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAADePwCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAAFkA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwEAAAA1AA"
-"AAcQAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAArAAAAt0AAABjAP///wAAAAMAAAd8AAAAifw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAB3wAAABEAP///wAABsIAAANUAAAA"
+"AAdgAAAGMA////+wAAAAwAVAByAGEAYwBlAHMBAAAAsQAAAvwAAABjAP///wAAAAMAAAJ8AAAAZfw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAAnwAAABEAP///wAAAcIAAAN4AAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
-      SavedViews    "AAAAAgAAAAEAAAAYAFMAYQB2AGUAZAAgAHYAaQBlAHcAIAAxP14w/+OtV"
-"6k/YOpA+vjh5QAAAAIAf/gAAAAAAAB/+AAAAAAAAAB/+AAAAAAAAH/4AAAAAAAAAT9fg9zuOKYsP2"
-"A86BC6EoYA"
-      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":180,\"Labels\":["
-"\"Delta\"],\"VisualIdxs\":[3]}"
+      SavedViews    "AAAAAgAAAAEAAAAYAFMAYQB2AGUAZAAgAHYAaQBlAHcAIAAxP19Z5ZT8U"
+"AU/YIOnXBJiIAAAAAIAf/gAAAAAAAB/+AAAAAAAAAB/+AAAAAAAAH/4AAAAAAAAAAAAAAAAAAAAAA"
+"AAAAAAAAAA"
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":180,\"Labels\":[\""
+"Delta\"],\"VisualIdxs\":[3]}"
       PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA"
 "AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
       Axes          "2"
@@ -1191,39 +1167,6 @@ Plecs {
       }
     }
     Component {
-      Type          Ammeter
-      Name          "Am3"
-      Show          off
-      Position      [445, 325]
-      Direction     right
-      Flipped       off
-      LabelPosition north
-    }
-    Component {
-      Type          Goto
-      Name          "Goto6"
-      Show          off
-      Position      [445, 360]
-      Direction     down
-      Flipped       off
-      LabelPosition west
-      Parameter {
-        Variable      "Tag"
-        Value         "I_L"
-        Show          off
-      }
-      Parameter {
-        Variable      "Visibility"
-        Value         "1"
-        Show          off
-      }
-      Parameter {
-        Variable      "NoMatchingCounterpartAction"
-        Value         "2"
-        Show          off
-      }
-    }
-    Component {
       Type          Scope
       Name          "Scope2"
       Show          on
@@ -1231,22 +1174,23 @@ Plecs {
       Direction     up
       Flipped       off
       LabelPosition south
-      Location      [962, 2; 1918, 1028]
-      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAADEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABEAP///wAAA7wAAAPjAAAA"
+      Location      [2, 2; 1918, 1028]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAADdvwCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAADEA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwEAAAA1AA"
+"ADdgAAAGMA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABjAP///wAAAAMAAAd8AAAAZ/w"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAB3wAAABEAP///wAABsIAAAN2AAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
-      SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":108,\"Labels\":[],"
-"\"VisualIdxs\":[]}"
+      SavedViews    "AAAAAgAAAAEAAAAYAFMAYQB2AGUAZAAgAHYAaQBlAHcAIAAxP1Wzj+n1L"
+"X4/WDN4R+vjpwAAAAEAv3R64UeuFHs/8BR64UeuFAE/VwbhMjHcWT9XXVSW7+WbAQ=="
+      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":108,\"Labels\":["
+"\"Delta\"],\"VisualIdxs\":[3]}"
       PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       Axes          "1"
       TimeRange     "0.0"
       ScrollingMode "1"
       SingleTimeAxis "1"
-      Open          "0"
+      Open          "1"
       Ts            "-1"
       SampleLimit   "0"
       XAxisLabel    "Time / s"
@@ -1309,9 +1253,9 @@ Plecs {
       Name          "Tr2"
       Show          off
       Position      [380, 225]
-      Direction     left
-      Flipped       off
-      LabelPosition north
+      Direction     right
+      Flipped       on
+      LabelPosition south
       Parameter {
         Variable      "Windings"
         Value         "[1 1]"
@@ -1324,7 +1268,7 @@ Plecs {
       }
       Parameter {
         Variable      "Polarity"
-        Value         "+-"
+        Value         "+"
         Show          off
       }
       Parameter {
@@ -1344,8 +1288,9 @@ Plecs {
       SrcTerminal   2
       Points        [545, 325]
       Branch {
-        DstComponent  "Am3"
-        DstTerminal   1
+        Points        [390, 325]
+        DstComponent  "Tr2"
+        DstTerminal   4
       }
       Branch {
         Points        [695, 325]
@@ -1356,7 +1301,7 @@ Plecs {
         Branch {
           Points        [775, 325]
           DstComponent  "Vm1"
-          DstTerminal   2
+          DstTerminal   1
         }
       }
     }
@@ -1368,7 +1313,7 @@ Plecs {
       Branch {
         Points        [775, 210]
         DstComponent  "Vm1"
-        DstTerminal   1
+        DstTerminal   2
       }
       Branch {
         DstComponent  "R1"
@@ -1406,8 +1351,7 @@ Plecs {
     }
     Connection {
       Type          Signal
-      SrcComponent  "From2"
-      SrcTerminal   1
+      Points        [770, 85]
       DstComponent  "Scope"
       DstTerminal   3
     }
@@ -1653,21 +1597,6 @@ Plecs {
     }
     Connection {
       Type          Wire
-      SrcComponent  "Am3"
-      SrcTerminal   2
-      Points        [390, 325]
-      DstComponent  "Tr2"
-      DstTerminal   3
-    }
-    Connection {
-      Type          Signal
-      SrcComponent  "Am3"
-      SrcTerminal   3
-      DstComponent  "Goto6"
-      DstTerminal   1
-    }
-    Connection {
-      Type          Wire
       SrcComponent  "FET1"
       SrcTerminal   1
       Points        [345, 305]
@@ -1678,7 +1607,7 @@ Plecs {
       Branch {
         Points        [345, 255; 370, 255]
         DstComponent  "Tr2"
-        DstTerminal   1
+        DstTerminal   2
       }
     }
     Connection {
@@ -1686,14 +1615,14 @@ Plecs {
       SrcComponent  "Am1"
       SrcTerminal   2
       DstComponent  "Tr2"
-      DstTerminal   2
+      DstTerminal   1
     }
     Connection {
       Type          Wire
       SrcComponent  "Tr2"
-      SrcTerminal   4
+      SrcTerminal   3
       DstComponent  "D1"
-      DstTerminal   1
+      DstTerminal   2
     }
     Connection {
       Type          Wire
@@ -1706,7 +1635,7 @@ Plecs {
       }
       Branch {
         DstComponent  "D1"
-        DstTerminal   2
+        DstTerminal   1
       }
     }
   }
