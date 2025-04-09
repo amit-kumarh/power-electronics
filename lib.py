@@ -1,6 +1,7 @@
 import csv
 import pandas as pd
 import numpy as np
+from scipy.signal import find_peaks
 
 R = 5 # Load Resistance
 VG = 18 # Input Voltage
@@ -34,8 +35,12 @@ def import_and_clean(name, cols, filt, filt_len=10):
     @return pd.df - renamed/filtered dataframe
     """
     data, t0, dT = read_rigol_csv(f"data/{name}.csv")
-    data[cols[0]] = data['CH1'].rolling(filt_len).mean() if filt else data['CH1'] # filter/rename data
-    data[cols[1]] = data['CH2'].rolling(filt_len).mean() if filt else data['CH2']
+    if 'CH1' in data:
+        data[cols[0]] = data['CH1'].rolling(filt_len).mean() if filt else data['CH1'] # filter/rename data
+    if 'CH2' in data:
+        data[cols[1]] = data['CH2'].rolling(filt_len).mean() if filt else data['CH2']
+    if 'CH3' in data:
+        data[cols[2]] = data['CH3'].rolling(filt_len).mean() if filt else data['CH3']
     data['X'] = data['X'].subtract(t0) # start x-axis from 0
     return data, dT
 
@@ -75,3 +80,21 @@ def calc_inductance(df, start, end, V_L):
     rng = np.where((df["X"] > start) & (df["X"] < end))[0]
     dI = np.polyfit(df["X"][rng[0]:rng[-1]], I_calc[rng[0]:rng[-1]], 1)[0]
     return V_L/dI
+
+def frequency(signal, dt, prominence, distance):
+    peaks, _ = find_peaks(signal, prominence=prominence, distance=distance)
+    if len(peaks) < 2:
+        return None  # Not enough peaks to calculate frequency
+
+    # Calculate the average distance between peaks
+    distance = np.mean(np.diff(peaks))
+    period = distance * dt
+
+    # Calculate the period and frequency
+    return peaks, 1/period
+
+def damping_ratio(signal, peaks, offset=0):
+    peak_vals = np.array(signal.iloc[peaks]) - offset
+    delta = np.mean(np.log(peak_vals[:-1] / peak_vals[1:]))
+    zeta = delta / np.sqrt(4*np.pi**2 + delta**2)
+    return zeta
