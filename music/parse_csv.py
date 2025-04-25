@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("thunderstruck.csv")
+df = pd.read_csv("ts2.csv")
 print(df.columns)
 df['hz'] = 440 * 2**((df['note']-69)/12)
 
